@@ -184,19 +184,21 @@
   var fireballSize = 22;
   var wizardSpeed = 3;
   var wizardWidth = 70;
+  var HEIGHT_PROPORTION_PARAMETER = 1.337;
+  var DOWNWIND_SPEED = 5;
+  var UPWIND_SPEED = 2;
 
   var getFireballSpeed = function(left) {
-    if(left) {
-      return 5;
+    if (left) {
+      return DOWNWIND_SPEED;
     }
     else {
-      return 2;
+      return UPWIND_SPEED;
     }
   };
 
   var getWizardHeight = function(width) {
-    var secondParameter = 1.337;
-    return width * secondParameter;
+    return width * HEIGHT_PROPORTION_PARAMETER;
   };
 
   var getWizardX = function(width) {
