@@ -181,7 +181,7 @@
   </div>
 </template>
 <script>
-  var HEIGHT_PROPORTION_PARAMETER = 1.337;
+  var WIZARD_HEIGHT_RATIO = 1.337;
   var DOWNWIND_SPEED = 5;
   var UPWIND_SPEED = 2;
 
@@ -193,7 +193,7 @@
   var getFireballSpeed = left ? DOWNWIND_SPEED : UPWIND_SPEED;
 
   var getWizardHeight = function(width) {
-    return width * HEIGHT_PROPORTION_PARAMETER;
+    return width * WIZARD_HEIGHT_RATIO;
   };
 
   var getWizardX = function(width) {
