@@ -188,14 +188,7 @@
   var DOWNWIND_SPEED = 5;
   var UPWIND_SPEED = 2;
 
-  var getFireballSpeed = function(left) {
-    if (left) {
-      return DOWNWIND_SPEED;
-    }
-    else {
-      return UPWIND_SPEED;
-    }
-  };
+  var getFireballSpeed = left ? DOWNWIND_SPEED : UPWIND_SPEED;
 
   var getWizardHeight = function(width) {
     return width * HEIGHT_PROPORTION_PARAMETER;
