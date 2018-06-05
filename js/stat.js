@@ -43,7 +43,7 @@ var getRandomArbitrary = function (min, max) {
 var getColor = function (x) {
   return 'rgb(8, 133, ' + String(getRandomArbitrary(150, 250) + x) + ')';
 };
-console.log(getColor());
+
 window.renderStatistics = function (ctx, players, times) {
   renderCloud(ctx, CLOUD_X + CLOUD_GAP, CLOUD_Y + CLOUD_GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, WHITE_COLOR);
