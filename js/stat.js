@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 'use strict';
 
 var CLOUD_WIDTH = 420;
@@ -30,6 +31,7 @@ var getMaxElement = function (arr) {
 
 window.renderStatistics = function (ctx, players, times) {
   console.log(players, times);
+  console.log(players[i]);
 
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
@@ -46,7 +48,7 @@ window.renderStatistics = function (ctx, players, times) {
     ctx.fillStyle = '#000';
     ctx.textBaseline = 'bottom';
     ctx.fillText(players[i], CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + CLOUD_HEIGHT - GAP);
-    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    ctx.fillStyle = (players[i] === 'Вы') ? 'rgba(255, 0, 0, 1)' : 'rgb(15, 82, 186)';
     ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + 2 * MESSAGE_HEIGHT + 2 * GAP + (BAR_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime), BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
   }
 };
