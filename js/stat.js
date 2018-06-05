@@ -47,6 +47,6 @@ window.renderStatistics = function (ctx, players, times) {
     ctx.textBaseline = 'bottom';
     ctx.fillText(players[i], CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + CLOUD_HEIGHT - GAP);
     ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + 2 * MESSAGE_HEIGHT + 2 * GAP, BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
+    ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + 2 * MESSAGE_HEIGHT + 2 * GAP + (BAR_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime), BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
   }
 };
