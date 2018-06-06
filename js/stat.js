@@ -33,30 +33,36 @@ var getMaxElement = function (arr) {
     }
   }
 
-  return Math.floor(maxElement);
+  return maxElement;
 };
 
-var getRandomArbitrary = function (min, max) {
-  return Math.round(Math.random() * (max - min) + min);
+function precise(x) {
+  return Number.parseFloat(x).toPrecision(1);
 };
 
-var getColor = function (x) {
-  return 'rgb(8, 133, ' + String(getRandomArbitrary(150, 250) + x) + ')';
+var getRandomColor = function () {
+  return 'rgba(0, 0, 250, ' + precise(Math.random()) + ')';
 };
+
+console.log(getRandomColor());
+
+var writeColoredText = function (ctx, color, font, position, text, x, y) {
+  ctx.fillStyle = color;
+  ctx.font = font;
+  ctx.textBaseline = position;
+  ctx.fillText(text, x, y);
+}
 
 window.renderStatistics = function (ctx, players, times) {
   renderCloud(ctx, CLOUD_X + CLOUD_GAP, CLOUD_Y + CLOUD_GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, WHITE_COLOR);
 
-  ctx.fillStyle = BLACK_COLOR;
-  ctx.font = TEXT_FONT;
-  ctx.textBaseline = TEXT_TOP;
-  ctx.fillText(FIRST_MESSAGE_PHRASE, CLOUD_X + TEXT_GAP, TEXT_GAP * 3);
-  ctx.fillText(SECOND_MESSAGE_PHRASE, CLOUD_X + TEXT_GAP, TEXT_HEIGHT + TEXT_GAP * 3);
+  writeColoredText(ctx, BLACK_COLOR, TEXT_FONT, TEXT_TOP, FIRST_MESSAGE_PHRASE, CLOUD_X + TEXT_GAP, TEXT_GAP * 3 );
+  writeColoredText(ctx, BLACK_COLOR, TEXT_FONT, TEXT_TOP, CLOUD_X + TEXT_GAP, TEXT_HEIGHT + TEXT_GAP * 3);
 
   var maxTime = getMaxElement(times);
   for (var i = 0; i < players.length; i++) {
-    var randomColor = getColor(i);
+    var randomColor = getRandomColor();
     ctx.fillStyle = BLACK_COLOR;
     ctx.textBaseline = TEXT_BOTTOM;
     ctx.fillText(Math.floor(times[i]), CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + TEXT_HEIGHT * 2 + TEXT_GAP * 5 + (BAR_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime));
