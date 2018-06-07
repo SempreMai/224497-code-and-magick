@@ -72,8 +72,6 @@ var getRandomEyesColor = function () {
   return WIZARD_EYES_COLORS[randomWizardEyesColor];
 };
 
-console.log(getRandomEyesColor());
-
 var wizards = [
   {
     name: getRandomWizardName(),
