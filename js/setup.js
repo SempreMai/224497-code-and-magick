@@ -44,20 +44,21 @@ function clamp(value, min, max) {
 }
 
 var wizardNameIndex = function () {
-  var randomWizardName = clamp(Math.random().toFixed(0), 0, WIZARD_NAMES.length - 1);
-  var randomWizardSurname = clamp(Math.random().toFixed(0), 0, WIZARD_SURNAMES.length - 1);
+  var randomWizardName = clamp(Math.floor(Math.random() * 10), 0, WIZARD_NAMES.length - 1);
+  console.log(randomWizardName);
+  var randomWizardSurname = clamp(Math.floor(Math.random() * 10), 0, WIZARD_SURNAMES.length - 1);
   return WIZARD_NAMES[randomWizardName] + ' ' + WIZARD_SURNAMES[randomWizardSurname];
 };
 
 var wizardCoatColorInex = function () {
   var wizardCoatsArrLength = WIZARD_COAT_COLORS.length - 1;
-  var randomWizardCoatColor = clamp(Math.random().toFixed(0), 0, wizardCoatsArrLength);
+  var randomWizardCoatColor = clamp(Math.floor(Math.random() * 10), 0, wizardCoatsArrLength);
   return WIZARD_COAT_COLORS[randomWizardCoatColor];
 };
 
 var wizardEyesColorIndex = function () {
   var wizardEyesArrLength = WIZARD_EYES_COLORS.length - 1;
-  var randomWizardEyesColor = clamp(Math.random().toFixed(0), 0, wizardEyesArrLength);
+  var randomWizardEyesColor = clamp(Math.floor(Math.random() * 10), 0, wizardEyesArrLength);
   return WIZARD_EYES_COLORS[randomWizardEyesColor];
 };
 
@@ -70,7 +71,7 @@ var similarItemTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
 
-var renderWizard = function () {
+var createWizard = function () {
   var wizardElement = similarItemTemplate.cloneNode(true);
   wizardElement.querySelector('.setup-similar-label').textContent = wizardNameIndex();
   wizardElement.querySelector('.wizard-coat').style.fill = wizardCoatColorInex();
@@ -78,13 +79,16 @@ var renderWizard = function () {
   return wizardElement;
 };
 
-var wizard = document.createDocumentFragment();
+var createWizardFragment = function () {
+  var wizardFragment = document.createDocumentFragment();
 
-for (var i = 0; i < 4; i++) {
-  wizard.appendChild(renderWizard());
-}
+  for (var i = 0; i < 4; i++) {
+    wizardFragment.appendChild(createWizard());
+  }
+  return wizardFragment;
+};
 
-similarListElement.appendChild(wizard);
+similarListElement.appendChild(createWizardFragment());
 
 userDialogElement.querySelector('.setup-similar').classList.remove('hidden');
 
