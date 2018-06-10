@@ -45,7 +45,6 @@ function clamp(value, min, max) {
 
 var wizardNameIndex = function () {
   var randomWizardName = clamp(Math.floor(Math.random() * 10), 0, WIZARD_NAMES.length - 1);
-  console.log(randomWizardName);
   var randomWizardSurname = clamp(Math.floor(Math.random() * 10), 0, WIZARD_SURNAMES.length - 1);
   return WIZARD_NAMES[randomWizardName] + ' ' + WIZARD_SURNAMES[randomWizardSurname];
 };
