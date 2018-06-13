@@ -61,9 +61,9 @@ var makeWizardEyesColor = function () {
   return WIZARD_EYES_COLORS[randomWizardEyesColor];
 };
 
-var userSetup = document.querySelector('.setup');
+var userSetupElement = document.querySelector('.setup');
 
-var similarWizardsList = userSetup.querySelector('.setup-similar-list');
+var similarWizardsListElement = userSetupElement.querySelector('.setup-similar-list');
 
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
@@ -86,9 +86,9 @@ var createWizardFragment = function () {
   return wizardFragment;
 };
 
-similarWizardsList.appendChild(createWizardFragment());
+similarWizardsListElement.appendChild(createWizardFragment());
 
-userSetup.classList.remove('hidden');
+userSetupElement.classList.remove('hidden');
 
-userSetup.querySelector('.setup-similar').classList.remove('hidden');
+userSetupElement.querySelector('.setup-similar').classList.remove('hidden');
 
