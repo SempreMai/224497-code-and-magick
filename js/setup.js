@@ -43,38 +43,37 @@ function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
-var wizardNameIndex = function () {
+var makeWizardRandomName = function () {
   var randomWizardName = clamp(Math.floor(Math.random() * 10), 0, WIZARD_NAMES.length - 1);
   var randomWizardSurname = clamp(Math.floor(Math.random() * 10), 0, WIZARD_SURNAMES.length - 1);
   return WIZARD_NAMES[randomWizardName] + ' ' + WIZARD_SURNAMES[randomWizardSurname];
 };
 
-var wizardCoatColorInex = function () {
+var makeWizardCoatColor = function () {
   var wizardCoatsArrLength = WIZARD_COAT_COLORS.length - 1;
   var randomWizardCoatColor = clamp(Math.floor(Math.random() * 10), 0, wizardCoatsArrLength);
   return WIZARD_COAT_COLORS[randomWizardCoatColor];
 };
 
-var wizardEyesColorIndex = function () {
-  var wizardEyesArrLength = WIZARD_EYES_COLORS.length - 1;
-  var randomWizardEyesColor = clamp(Math.floor(Math.random() * 10), 0, wizardEyesArrLength);
+var makeWizardEyesColor = function () {
+  var wizardEyesArray = WIZARD_EYES_COLORS.length - 1;
+  var randomWizardEyesColor = clamp(Math.floor(Math.random() * 10), 0, wizardEyesArray);
   return WIZARD_EYES_COLORS[randomWizardEyesColor];
 };
 
-var userDialogElement = document.querySelector('.setup');
-userDialogElement.classList.remove('hidden');
+var userSetup = document.querySelector('.setup');
 
-var similarListElement = userDialogElement.querySelector('.setup-similar-list');
+var similarWizardsList = userSetup.querySelector('.setup-similar-list');
 
-var similarItemTemplate = document.querySelector('#similar-wizard-template')
+var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
 
 var createWizard = function () {
-  var wizardElement = similarItemTemplate.cloneNode(true);
-  wizardElement.querySelector('.setup-similar-label').textContent = wizardNameIndex();
-  wizardElement.querySelector('.wizard-coat').style.fill = wizardCoatColorInex();
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizardEyesColorIndex();
+  var wizardElement = similarWizardTemplate.cloneNode(true);
+  wizardElement.querySelector('.setup-similar-label').textContent = makeWizardRandomName();
+  wizardElement.querySelector('.wizard-coat').style.fill = makeWizardCoatColor();
+  wizardElement.querySelector('.wizard-eyes').style.fill = makeWizardEyesColor();
   return wizardElement;
 };
 
@@ -87,7 +86,9 @@ var createWizardFragment = function () {
   return wizardFragment;
 };
 
-similarListElement.appendChild(createWizardFragment());
+similarWizardsList.appendChild(createWizardFragment());
 
-userDialogElement.querySelector('.setup-similar').classList.remove('hidden');
+userSetup.classList.remove('hidden');
+
+userSetup.querySelector('.setup-similar').classList.remove('hidden');
 
