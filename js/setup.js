@@ -39,6 +39,17 @@ var WIZARD_EYES_COLORS = [
   'green'
 ];
 
+var WIZARD_FIREBALL_COLORS = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+];
+
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
@@ -50,8 +61,8 @@ var makeWizardRandomName = function () {
 };
 
 var makeWizardCoatColor = function () {
-  var wizardCoatsArrLength = WIZARD_COAT_COLORS.length - 1;
-  var randomWizardCoatColor = clamp(Math.floor(Math.random() * 10), 0, wizardCoatsArrLength);
+  var wizardCoatsArray = WIZARD_COAT_COLORS.length - 1;
+  var randomWizardCoatColor = clamp(Math.floor(Math.random() * 10), 0, wizardCoatsArray);
   return WIZARD_COAT_COLORS[randomWizardCoatColor];
 };
 
@@ -61,9 +72,9 @@ var makeWizardEyesColor = function () {
   return WIZARD_EYES_COLORS[randomWizardEyesColor];
 };
 
-var userSetupElement = document.querySelector('.setup');
+var wizardSetupForm = document.querySelector('.setup');
 
-var similarWizardsListElement = userSetupElement.querySelector('.setup-similar-list');
+var similarWizardsListElement = wizardSetupForm.querySelector('.setup-similar-list');
 
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
@@ -88,7 +99,73 @@ var createWizardFragment = function () {
 
 similarWizardsListElement.appendChild(createWizardFragment());
 
-userSetupElement.classList.remove('hidden');
+var wizardSetupOpenElement = document.querySelector('.setup-open');
+var wizardSetupCloseElement = wizardSetupForm.querySelector('.setup-close');
+var wizardSetupInputName = wizardSetupForm.querySelector('.setup-user-name');
+var wizardSetupContainer = wizardSetupForm.querySelector('.setup-wizard');
+var wizardSetupCoat = wizardSetupContainer.querySelector('.wizard-coat');
+var wizardSetupEyes = wizardSetupContainer.querySelector('.wizard-eyes');
+var wizardSetupFireballColor = document.querySelector('.setup-fireball-wrap');
+var wizardSetupSubmitButton = wizardSetupForm.querySelector('.setup-submit');
+var wizardSetupFormInputCoat = wizardSetupContainer.querySelector('input[name="coat-color"]'); // Не находит
+var wizardSetupFormInputEyes = wizardSetupContainer.querySelector('input[name="eyes-color"]'); // Не находит
+var wizardSetupFormInputFireballColor = wizardSetupFireballColor.querySelector('input[name="fireball-color"]'); // Не находит
 
-userSetupElement.querySelector('.setup-similar').classList.remove('hidden');
+var onWizardSetupFormKeyDown = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE && evt.target !== wizardSetupInputName) {
+    closeWizardSetupForm();
+  } else if (evt.keyCode === ENTER_KEYCODE && evt.target === wizardSetupSubmitButton) {
+    wizardSetupForm.submit();
+  }
+};
+
+var openWizardSetupForm = function () {
+  wizardSetupForm.classList.remove('hidden');
+  document.addEventListener('keydown', onWizardSetupFormKeyDown);
+};
+
+var closeWizardSetupForm = function () {
+  wizardSetupForm.classList.add('hidden');
+  document.removeEventListener('keydown', onWizardSetupFormKeyDown);
+};
+
+var changeWizardCoatColor = function () {
+  var wizardCoatColor = makeWizardCoatColor();
+  wizardSetupCoat.style.fill = wizardCoatColor;
+  wizardSetupFormInputCoat.value = wizardCoatColor;
+};
+
+var changeWizardEyesColor = function () {
+  var wizardEyesColor = makeWizardEyesColor();
+  wizardSetupEyes.style.fill = wizardEyesColor;
+  wizardSetupFormInputEyes.value = wizardEyesColor; // Uncaught TypeError: Cannot set property 'value' of null
+};
+
+var changeWizardFireballColor = function () { // Не работает, не меняется цвет
+  var randomFireballColor = WIZARD_FIREBALL_COLORS[clamp(Math.floor(Math.random() * 10), 0, WIZARD_FIREBALL_COLORS.length - 1)];
+  wizardSetupFormInputFireballColor.value = randomFireballColor; // Uncaught TypeError: Cannot set property 'value' of null
+  return randomFireballColor;
+};
+
+wizardSetupOpenElement.addEventListener('click', openWizardSetupForm);
+
+wizardSetupOpenElement.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openWizardSetupForm();
+  }
+});
+
+wizardSetupCloseElement.addEventListener('click', closeWizardSetupForm);
+
+wizardSetupCloseElement.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closeWizardSetupForm();
+  }
+});
+
+wizardSetupCoat.addEventListener('click', changeWizardCoatColor);
+
+wizardSetupEyes.addEventListener('click', changeWizardEyesColor);
+
+wizardSetupFireballColor.addEventListener('click', changeWizardFireballColor);
 
