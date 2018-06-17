@@ -83,7 +83,7 @@ function getRandomInt(min, max) {
 }
 
 var makeWizardRandomName = function () {
-  return WIZARD_NAMES[getRandomInt(0, WIZARD_NAMES.length - 1)] + ' ' + WIZARD_SURNAMES[0, WIZARD_SURNAMES.length - 1];
+  return WIZARD_NAMES[getRandomInt(0, WIZARD_NAMES.length - 1)] + ' ' + getRandomInt(0, WIZARD_SURNAMES.length - 1);
 };
 
 var makeWizardCoatColor = function () {
