@@ -139,19 +139,19 @@ var closeWizardSetupForm = function () {
 var changeWizardCoatColor = function () {
   var wizardCoatColor = makeWizardCoatColor();
   wizardSetupCoat.style.fill = wizardCoatColor;
-  wizardSetupFormInputCoat.setAttribute('value', wizardCoatColor); // Uncaught TypeError: Cannot set property 'value' of null
+  wizardSetupFormInputCoat.setAttribute('value', wizardCoatColor); // Uncaught DOMException: Failed to execute 'setAttribute' on 'Element': '#5ce6c0' is not a valid attribute name.
 };
 
 var changeWizardEyesColor = function () {
   var wizardEyesColor = makeWizardEyesColor();
   wizardSetupEyes.style.fill = wizardEyesColor;
-  wizardSetupFormInputEyes.setAttribute('value', wizardEyesColor); // Uncaught TypeError: Cannot set property 'value' of null
+  wizardSetupFormInputEyes.setAttribute('value', wizardEyesColor); // Uncaught DOMException: Failed to execute 'setAttribute' on 'Element': '#5ce6c0' is not a valid attribute name.
 };
 
 var changeWizardFireballColor = function () {
   var randomFireballColor = makeWizardFireballColor();
   wizardSetupFireballColor.style.backgroundColor = randomFireballColor;
-  wizardSetupFormInputFireballColor.setAttribute('value', randomFireballColor); // Uncaught TypeError: Cannot set property 'value' of null
+  wizardSetupFormInputFireballColor.setAttribute('value', randomFireballColor); // Uncaught DOMException: Failed to execute 'setAttribute' on 'Element': '#5ce6c0' is not a valid attribute name.
 };
 
 wizardSetupOpenElement.addEventListener('click', openWizardSetupForm);
