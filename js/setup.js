@@ -139,19 +139,19 @@ var closeWizardSetupForm = function () {
 var changeWizardCoatColor = function () {
   var wizardCoatColor = makeWizardCoatColor();
   wizardSetupCoat.style.fill = wizardCoatColor;
-  wizardSetupFormInputCoat.setAttribute(wizardCoatColor, 'value'); // Uncaught TypeError: Cannot set property 'value' of null
+  wizardSetupFormInputCoat.setAttribute('value', wizardCoatColor); // Uncaught TypeError: Cannot set property 'value' of null
 };
 
 var changeWizardEyesColor = function () {
   var wizardEyesColor = makeWizardEyesColor();
   wizardSetupEyes.style.fill = wizardEyesColor;
-  wizardSetupFormInputEyes.setAttribute(wizardEyesColor, 'value'); // Uncaught TypeError: Cannot set property 'value' of null
+  wizardSetupFormInputEyes.setAttribute('value', wizardEyesColor); // Uncaught TypeError: Cannot set property 'value' of null
 };
 
 var changeWizardFireballColor = function () {
   var randomFireballColor = makeWizardFireballColor();
   wizardSetupFireballColor.style.backgroundColor = randomFireballColor;
-  wizardSetupFormInputFireballColor.setAttribute(randomFireballColor, 'value'); // Uncaught TypeError: Cannot set property 'value' of null
+  wizardSetupFormInputFireballColor.setAttribute('value', randomFireballColor); // Uncaught TypeError: Cannot set property 'value' of null
 };
 
 wizardSetupOpenElement.addEventListener('click', openWizardSetupForm);
