@@ -94,6 +94,11 @@ var makeWizardEyesColor = function () {
   return WIZARD_EYES_COLORS[getRandomInt(0, WIZARD_EYES_COLORS.length - 1)];
 };
 
+var makeWizardFireballColor = function () { // Не работает, не меняется цвет
+  return WIZARD_FIREBALL_COLORS[getRandomInt(0, WIZARD_FIREBALL_COLORS.length - 1)];
+};
+
+
 var createWizard = function () {
   var wizardElement = similarWizardTemplate.cloneNode(true);
   wizardElement.querySelector('.setup-similar-label').textContent = makeWizardRandomName();
@@ -143,10 +148,10 @@ var changeWizardEyesColor = function () {
   wizardSetupFormInputEyes.setAttribute(wizardEyesColor, 'value'); // Uncaught TypeError: Cannot set property 'value' of null
 };
 
-var changeWizardFireballColor = function () { // Не работает, не меняется цвет
-  var randomFireballColor = WIZARD_FIREBALL_COLORS[clamp(Math.floor(Math.random() * 10), 0, WIZARD_FIREBALL_COLORS.length - 1)];
+var changeWizardFireballColor = function () {
+  var randomFireballColor = makeWizardFireballColor();
+  wizardSetupFireballColor.style.backgroundColor = randomFireballColor;
   wizardSetupFormInputFireballColor.setAttribute(randomFireballColor, 'value'); // Uncaught TypeError: Cannot set property 'value' of null
-  return randomFireballColor;
 };
 
 wizardSetupOpenElement.addEventListener('click', openWizardSetupForm);
